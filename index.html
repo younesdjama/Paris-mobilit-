@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris — Territoire, Mobilité & Carbone</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  HERO                                                      -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="hero">
+    <div class="hero-bg">
+        <div class="hero-orb orb1"></div>
+        <div class="hero-orb orb2"></div>
+        <div class="hero-orb orb3"></div>
+        <div class="hero-grid"></div>
+    </div>
+    <div class="hero-content">
+        <div class="hero-badge">Valorisation Scientifique · Master Géomatique · Université de Strasbourg · 2026</div>
+        <h1 class="hero-title">
+            Paris :<br>
+            <span class="hero-accent">Territoire, Mobilité</span><br>
+            <span class="hero-italic">& Carbone</span>
+        </h1>
+        <p class="hero-sub">
+            Quatre indicateurs, une même fracture territoriale —<br>
+            densité, espaces verts, mobilité douce et émissions CO₂<br>
+            révèlent les inégalités environnementales de la capitale.
+        </p>
+        <div class="hero-nav">
+            <a href="#section-intro" class="hn-link">① Contexte</a>
+            <a href="#section-carte" class="hn-link">② Carte interactive</a>
+            <a href="#section-co2" class="hn-link">③ Analyse CO₂</a>
+            <a href="#section-infographie" class="hn-link">④ Infographie</a>
+            <a href="#section-dataviz" class="hn-link">⑤ Dataviz</a>
+        </div>
+        <div class="hero-scroll">↓</div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  CONTEXTE + KPI                                            -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section id="section-intro" class="section-intro">
+    <div class="wrap">
+        <div class="intro-deux-col">
+            <div class="intro-texte">
+                <span class="eyebrow">Problématique</span>
+                <h2>Une ville à <em>deux vitesses</em> environnementales</h2>
+                <p>
+                    Paris concentre sur <strong>105 km²</strong> l'une des densités urbaines
+                    les plus élevées d'Europe, avec des écarts considérables entre
+                    arrondissements. Cette analyse croise quatre indicateurs complémentaires :
+                    la <strong>densité de population</strong> (INSEE 2019),
+                    l'<strong>accès aux espaces verts</strong> (Paris Open Data, calculs QGIS / R),
+                    le <strong>réseau de mobilité douce</strong> (pistes cyclables, Paris Open Data)
+                    et les <strong>émissions de CO₂</strong> par arrondissement
+                    (tCO₂eq/hab/an, AIRPARIF / APUR).
+                </p>
+                <p>
+                    L'hypothèse centrale : les arrondissements les plus denses cumulent
+                    les déficits — moins d'espaces verts, moins de pistes cyclables protégées,
+                    et des émissions carbone plus élevées par habitant liées aux déplacements
+                    motorisés et au chauffage.
+                </p>
+                <div class="source-block">
+                    <strong>Sources :</strong> Paris Open Data · INSEE RP 2019 · AIRPARIF 2023 ·
+                    APUR · Calculs QGIS 3.34 & R 4.5
+                </div>
+            </div>
+            <div class="kpi-panel">
+                <div class="kpi-item">
+                    <div class="kpi-val">20</div>
+                    <div class="kpi-lab">arrondissements analysés</div>
+                </div>
+                <div class="kpi-item kpi-alert">
+                    <div class="kpi-val">×20</div>
+                    <div class="kpi-lab">écart d'accès aux espaces verts</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-val">~1 100</div>
+                    <div class="kpi-lab">km de pistes cyclables</div>
+                </div>
+                <div class="kpi-item kpi-co2">
+                    <div class="kpi-val">3,4</div>
+                    <div class="kpi-lab">tCO₂eq/hab/an · moyenne Paris</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-val">5,8</div>
+                    <div class="kpi-lab">tCO₂eq/hab · max (8e)</div>
+                </div>
+                <div class="kpi-item kpi-green">
+                    <div class="kpi-val">2,8</div>
+                    <div class="kpi-lab">tCO₂eq/hab · min (12e, 19e)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  SECTION 1 — CARTE INTERACTIVE + SIDEBAR                  -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section id="section-carte" class="section-dark">
+    <div class="wrap">
+        <div class="section-header">
+            <span class="tag tag-green">① Géovisualisation · Leaflet.js</span>
+            <h2>Densité, espaces verts & mobilité douce</h2>
+            <p class="section-desc">
+                Cliquez sur un arrondissement pour révéler ses quatre indicateurs.
+                Changez la couche affichée via le menu pour croiser les données.
+            </p>
+        </div>
+
+        <div class="map-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <div id="sidebarDefault" class="sb-default">
+                    <div class="sb-icon">🗺️</div>
+                    <p class="sb-hint">Cliquez sur un arrondissement pour révéler ses indicateurs environnementaux</p>
+                    <div class="zoom-section">
+                        <p class="zoom-label">🔍 Zooms rapides</p>
+                        <button class="zbtn" data-lat="48.859" data-lng="2.375" data-zoom="14">🔴 11e · Plus dense</button>
+                        <button class="zbtn" data-lat="48.863" data-lng="2.274" data-zoom="14">🟢 16e · Plus vert</button>
+                        <button class="zbtn" data-lat="48.840" data-lng="2.420" data-zoom="14">🌲 12e · Vincennes</button>
+                        <button class="zbtn" data-lat="48.865" data-lng="2.400" data-zoom="14">🚴 20e · Est</button>
+                        <button class="zbtn" data-lat="48.8729" data-lng="2.295" data-zoom="14">💨 8e · + CO₂</button>
+                        <button class="zbtn" data-lat="48.8566" data-lng="2.3522" data-zoom="12">↩ Vue globale</button>
+                    </div>
+                </div>
+                <div id="sidebarStats" class="sb-stats hidden">
+                    <button id="sbClose" class="sb-close">✕</button>
+                    <div class="sb-arr-name" id="sbArrName">—</div>
+                    <div class="sb-score-wrap">
+                        <div class="sb-score" id="sbScore">—</div>
+                        <div class="sb-score-label">Score Environnemental<br><small>(/100)</small></div>
+                    </div>
+                    <div class="sb-indicators">
+                        <div class="sb-ind">
+                            <div class="sb-ind-icon">🏙️</div>
+                            <div class="sb-ind-val" id="sbDensite">—</div>
+                            <div class="sb-ind-lab">hab/km²</div>
+                        </div>
+                        <div class="sb-ind">
+                            <div class="sb-ind-icon">🌳</div>
+                            <div class="sb-ind-val" id="sbVert">—</div>
+                            <div class="sb-ind-lab">m²/hab verts</div>
+                        </div>
+                        <div class="sb-ind">
+                            <div class="sb-ind-icon">🚴</div>
+                            <div class="sb-ind-val" id="sbVelo">—</div>
+                            <div class="sb-ind-lab">km pistes</div>
+                        </div>
+                        <div class="sb-ind sb-ind-co2" id="sbIndCo2">
+                            <div class="sb-ind-icon">💨</div>
+                            <div class="sb-ind-val" id="sbCo2">—</div>
+                            <div class="sb-ind-lab">tCO₂/hab/an</div>
+                        </div>
+                    </div>
+                    <!-- Jauge CO2 -->
+                    <div class="co2-gauge-wrap">
+                        <div class="co2-gauge-label">Émissions CO₂ vs moyenne Paris (3,4 t)</div>
+                        <div class="co2-gauge-track">
+                            <div class="co2-gauge-fill" id="co2GaugeFill"></div>
+                            <div class="co2-gauge-avg"></div>
+                        </div>
+                        <div class="co2-gauge-vals"><span>0</span><span>moy.</span><span>6 t</span></div>
+                    </div>
+                    <!-- Mini barres -->
+                    <div class="sb-bars" id="sbBars"></div>
+                    <div class="sb-analyse" id="sbAnalyse"></div>
+                </div>
+            </aside>
+
+            <!-- Carte -->
+            <div class="map-container">
+                <div class="layer-ctrl" id="layerCtrl">
+                    <p class="lc-head">🗂 Couche</p>
+                    <label class="lc-lbl"><input type="radio" name="layer" value="none" checked> Densité seule</label>
+                    <label class="lc-lbl"><input type="radio" name="layer" value="pistes"> 🚴 + Pistes</label>
+                    <label class="lc-lbl"><input type="radio" name="layer" value="co2"> 💨 + CO₂</label>
+                    <div class="lc-msg" id="lcMsg"></div>
+                </div>
+                <div id="map"></div>
+                <div class="map-leg">
+                    <span class="ml-title">Densité (hab/km²)</span>
+                    <span class="ml-i"><i style="background:#FFEDA0"></i>&lt;12k</span>
+                    <span class="ml-i"><i style="background:#FEB24C"></i>12–22k</span>
+                    <span class="ml-i"><i style="background:#FC4E2A"></i>22–30k</span>
+                    <span class="ml-i"><i style="background:#BD0026"></i>30–38k</span>
+                    <span class="ml-i"><i style="background:#67000d"></i>&gt;38k</span>
+                    <span class="ml-i ml-piste"><i class="i-line"></i>Piste cyclable</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  SECTION 2 — ANALYSE CO₂                                  -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section id="section-co2" class="section-co2">
+    <div class="wrap">
+        <div class="section-header">
+            <span class="tag tag-co2">② Analyse CO₂ · AIRPARIF / APUR</span>
+            <h2>Carbone & inégalités : une double peine</h2>
+            <p class="section-desc">
+                Les arrondissements les plus denses et les moins verdoyants ne sont pas
+                nécessairement les plus émetteurs — mais ceux à fort usage automobile
+                (voitures thermiques, logistique, chauffage énergivore) concentrent
+                les émissions les plus élevées par habitant.
+            </p>
+        </div>
+
+        <!-- Cards CO2 extrêmes -->
+        <div class="co2-extremes">
+            <div class="co2-card co2-worst">
+                <div class="co2-c-badge">💨 Maximum</div>
+                <div class="co2-c-arr">8<sup>e</sup> arrondissement</div>
+                <div class="co2-c-val">5,8 <small>tCO₂eq/hab/an</small></div>
+                <div class="co2-c-detail">
+                    <div>Densité : <b>10 200 hab/km²</b></div>
+                    <div>Espaces verts : <b>6,4 m²/hab</b></div>
+                    <div>Pistes : <b>24,1 km</b></div>
+                    <div class="co2-c-why">Champs-Élysées, axes à fort trafic automobile, bâtiments énergivores</div>
+                </div>
+            </div>
+            <div class="co2-arrow">→</div>
+            <div class="co2-card co2-avg">
+                <div class="co2-c-badge">📊 Moyenne Paris</div>
+                <div class="co2-c-arr">Tous arrondissements</div>
+                <div class="co2-c-val">3,4 <small>tCO₂eq/hab/an</small></div>
+                <div class="co2-c-detail">
+                    <div>Objectif 2030 : <b>2,0 t/hab/an</b></div>
+                    <div>Objectif 2050 : <b>≤ 1,0 t/hab/an</b></div>
+                    <div class="co2-c-why">Plan Climat Air Énergie de Paris · Neutralité carbone 2050</div>
+                </div>
+            </div>
+            <div class="co2-arrow">→</div>
+            <div class="co2-card co2-best">
+                <div class="co2-c-badge">🌱 Minimum</div>
+                <div class="co2-c-arr">12<sup>e</sup> & 19<sup>e</sup></div>
+                <div class="co2-c-val">2,8 <small>tCO₂eq/hab/an</small></div>
+                <div class="co2-c-detail">
+                    <div>Densité : <b>8 800 / 27 700 hab/km²</b></div>
+                    <div>Espaces verts : <b>74,5 / 3,7 m²/hab</b></div>
+                    <div class="co2-c-why">Accès aux bois, usage modal plus actif, rénovation thermique avancée</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Graphique bulle interactif -->
+        <div class="bubble-section">
+            <div class="bubble-header">
+                <h3>Relation espaces verts × CO₂ × densité</h3>
+                <p>Chaque bulle = un arrondissement · Taille = densité de population · Couleur = niveau CO₂</p>
+            </div>
+            <div class="chart-wrapper-tall">
+                <canvas id="bubbleChart"></canvas>
+            </div>
+            <p class="chart-note">Axe X : espaces verts (m²/hab) · Axe Y : émissions CO₂ (tCO₂eq/hab/an)</p>
+        </div>
+
+        <!-- Analyse textuelle -->
+        <div class="analyse-grid">
+            <div class="analyse-card">
+                <div class="ac-icon">🔗</div>
+                <h4>Corrélation mobilité douce / CO₂</h4>
+                <p>Les arrondissements dotés de plus de pistes cyclables par habitant présentent en moyenne
+                   des émissions de CO₂ inférieures de <strong>18 %</strong> à ceux sous-équipés.
+                   La mobilité active agit directement sur la part modale automobile.</p>
+            </div>
+            <div class="analyse-card">
+                <div class="ac-icon">🌳</div>
+                <h4>Puits de carbone & verdure</h4>
+                <p>Au-delà des émissions, les espaces verts jouent un rôle de <strong>puits carbone</strong>
+                   et de régulation thermique. Le 16e et le 12e, grâce aux bois, compensent
+                   partiellement leurs émissions résidentielles.</p>
+            </div>
+            <div class="analyse-card">
+                <div class="ac-icon">📍</div>
+                <h4>Inégalité environnementale cumulée</h4>
+                <p>Les arrondissements du nord-est (10e, 11e, 18e, 20e) cumulent
+                   <strong>forte densité</strong>, <strong>faibles espaces verts</strong>
+                   et <strong>émissions moyennes à élevées</strong> — une triple vulnérabilité
+                   face aux enjeux climatiques.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  SECTION 3 — INFOGRAPHIE                                   -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section id="section-infographie" class="section-light">
+    <div class="wrap">
+        <div class="section-header">
+            <span class="tag tag-orange">③ Infographie · QGIS & HTML/CSS</span>
+            <h2>Le paradoxe de la ville verte</h2>
+            <p class="section-desc">
+                Les arrondissements les moins peuplés bénéficient d'un accès
+                aux espaces verts <strong>jusqu'à 70 fois supérieur</strong>
+                aux plus denses — en incluant les Bois de Vincennes et Boulogne.
+            </p>
+        </div>
+
+        <!-- Comparaison extrêmes -->
+        <div class="compare-row">
+            <div class="cmp-card cmp-green">
+                <div class="cmp-emoji">🌳</div>
+                <div class="cmp-arr">16<sup>e</sup></div>
+                <div class="cmp-val">56,3 <small>m²/hab</small></div>
+                <div class="cmp-sub">espaces verts</div>
+                <div class="cmp-tags">
+                    <span class="ctag">10 300 hab/km²</span>
+                    <span class="ctag">Peu dense</span>
+                    <span class="ctag co2-tag">3,8 tCO₂</span>
+                </div>
+            </div>
+            <div class="cmp-sep">
+                <div class="cmp-line"></div>
+                <div class="cmp-vs">VS</div>
+                <div class="cmp-line"></div>
+            </div>
+            <div class="cmp-card cmp-red">
+                <div class="cmp-emoji">🏙️</div>
+                <div class="cmp-arr">11<sup>e</sup></div>
+                <div class="cmp-val">0,8 <small>m²/hab</small></div>
+                <div class="cmp-sub">espaces verts</div>
+                <div class="cmp-tags">
+                    <span class="ctag">41 400 hab/km²</span>
+                    <span class="ctag">Très dense</span>
+                    <span class="ctag co2-tag">3,0 tCO₂</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Score environnemental par arrondissement -->
+        <div class="score-section">
+            <h3>Score environnemental composite <span class="score-info">ℹ️</span></h3>
+            <p class="score-legend">Combine : espaces verts (40%) + pistes cyclables (30%) + émissions CO₂ inversées (30%)</p>
+            <div class="score-bars" id="scoreBars"></div>
+        </div>
+
+        <!-- Carte QGIS -->
+        <div class="qgis-section">
+            <img src="assets/infographie_paris.png"
+                 alt="Carte choroplèthe QGIS — m² d'espaces verts par habitant"
+                 onerror="this.parentElement.innerHTML='<div class=\'qgis-ph\'>🗺️ Carte QGIS<br><small>Exportez depuis QGIS Mise en page → assets/infographie_paris.png</small></div>'">
+            <p class="qgis-cap">Carte choroplèthe · m² espaces verts/hab · QGIS 3.34 · Sources : Paris Open Data · INSEE 2019</p>
+        </div>
+
+        <!-- Barres espaces verts -->
+        <div class="bars-section">
+            <h3>Espaces verts par habitant — 20 arrondissements</h3>
+            <p class="bars-sub">Classés par densité décroissante · ✅ = seuil OMS atteint (9 m²/hab)</p>
+            <div class="bars-grid" id="barsGrid"></div>
+            <div class="oms-banner">
+                <span class="oms-dot"></span>
+                <span>Seuil OMS recommandé : <strong>9 m² d'espaces verts par habitant</strong></span>
+                <span class="oms-src">Sources : OMS · Mairie de Paris · INSEE 2019 · Calculs QGIS / R</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  SECTION 4 — DATAVIZ INTERACTIVE                          -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section id="section-dataviz" class="section-dark">
+    <div class="wrap">
+        <div class="section-header">
+            <span class="tag tag-blue">④ Dataviz Interactive · Chart.js</span>
+            <h2>Quatre indicateurs, une même inégalité</h2>
+            <p class="section-desc">
+                Explorez les croisements entre densité, espaces verts, mobilité douce
+                et émissions CO₂ par arrondissement. Survolez pour afficher les détails.
+            </p>
+        </div>
+
+        <div class="chart-tabs">
+            <button class="ctab active" data-view="verts">🌳 Espaces verts</button>
+            <button class="ctab" data-view="velo">🚴 Pistes cyclables</button>
+            <button class="ctab" data-view="co2">💨 Émissions CO₂</button>
+            <button class="ctab" data-view="score">🏆 Score environnemental</button>
+            <button class="ctab" data-view="combine">📊 Vue combinée</button>
+        </div>
+
+        <div class="chart-wrapper">
+            <canvas id="mainChart"></canvas>
+        </div>
+        <p class="chart-note">⟵ Arrondissements classés par densité de population croissante ⟶</p>
+
+        <!-- Tableau récapitulatif -->
+        <div class="table-wrap">
+            <h3>Tableau récapitulatif complet</h3>
+            <div class="table-scroll">
+                <table class="data-table" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Arrondissement</th>
+                            <th>Densité <small>(hab/km²)</small></th>
+                            <th>Espaces verts <small>(m²/hab)</small></th>
+                            <th>Pistes vélo <small>(km)</small></th>
+                            <th>CO₂ <small>(t/hab/an)</small></th>
+                            <th>Score env.</th>
+                            <th>OMS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  FOOTER                                                    -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+    <div class="wrap">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-title">Paris — Territoire, Mobilité & Carbone</div>
+                <div class="footer-sub">Projet individuel de Valorisation Scientifique<br>Master Géomatique OTG · Université de Strasbourg · 2026</div>
+            </div>
+            <div>
+                <div class="footer-label">Sources de données</div>
+                <div class="footer-links">
+                    Paris Open Data · INSEE RP 2019 · AIRPARIF 2023 · APUR · OMS
+                </div>
+            </div>
+            <div>
+                <div class="footer-label">Outils</div>
+                <div class="footer-links">QGIS 3.34 · R 4.5 · Leaflet.js · Chart.js</div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
