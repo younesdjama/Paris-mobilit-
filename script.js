@@ -383,16 +383,7 @@ if (barsGrid) {
     });
 }
 
-// Animation barres au scroll
-new IntersectionObserver(entries => {
-    entries.forEach(e => {
-        if (e.isIntersecting) {
-            document.querySelectorAll('[data-target]').forEach(el => {
-                el.style.width = el.dataset.target + '%';
-            });
-        }
-    });
-}, { threshold: 0.2 }).observe(document.body);
+// Animation barres au scroll — gérée par initScrollAnimations()
 
 
 // ══════════════════════════════════════════════════════════════
@@ -538,3 +529,196 @@ document.querySelectorAll('.ctab').forEach(btn => {
         buildChart(this.dataset.view);
     });
 });
+
+
+// ══════════════════════════════════════════════════════════════
+// 7. ANIMATIONS AU SCROLL — IntersectionObserver
+// ══════════════════════════════════════════════════════════════
+
+(function initScrollAnimations() {
+
+    // — Observer principal pour les éléments .reveal —
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                // On ne dés-observe pas pour garder l'état visible
+            }
+        });
+    }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+    });
+
+    // Observer tous les éléments reveal
+    document.querySelectorAll('.reveal').forEach(el => {
+        revealObserver.observe(el);
+    });
+
+    // — Intro deux colonnes : révélation gauche / droite —
+    const introTexte = document.querySelector('.intro-texte');
+    const kpiPanel   = document.querySelector('.kpi-panel');
+    if (introTexte) {
+        introTexte.classList.add('reveal', 'reveal-left');
+        revealObserver.observe(introTexte);
+    }
+    if (kpiPanel) {
+        kpiPanel.classList.add('reveal', 'reveal-right');
+        revealObserver.observe(kpiPanel);
+    }
+
+    // — Map layout —
+    const mapLayout = document.querySelector('.map-layout');
+    if (mapLayout) {
+        mapLayout.classList.add('reveal');
+        revealObserver.observe(mapLayout);
+    }
+
+    // — Bubble chart section —
+    const bubbleSection = document.querySelector('.bubble-section');
+    if (bubbleSection) {
+        bubbleSection.classList.add('reveal');
+        revealObserver.observe(bubbleSection);
+    }
+
+    // — CO2 extremes cards —
+    document.querySelectorAll('.co2-card').forEach((card, i) => {
+        card.classList.add('reveal', `reveal-delay-${i + 1}`);
+        revealObserver.observe(card);
+    });
+
+    // — Chart wrapper —
+    const chartWrapper = document.querySelector('.chart-wrapper');
+    if (chartWrapper) {
+        chartWrapper.classList.add('reveal', 'reveal-scale');
+        revealObserver.observe(chartWrapper);
+    }
+
+    // — Table wrap —
+    const tableWrap = document.querySelector('.table-wrap');
+    if (tableWrap) {
+        tableWrap.classList.add('reveal');
+        revealObserver.observe(tableWrap);
+    }
+
+    // — Chart tabs —
+    const chartTabs = document.querySelector('.chart-tabs');
+    if (chartTabs) {
+        chartTabs.classList.add('reveal', 'reveal-fade');
+        revealObserver.observe(chartTabs);
+    }
+
+    // — Footer —
+    const footer = document.querySelector('.site-footer');
+    if (footer) {
+        footer.classList.add('reveal', 'reveal-fade');
+        revealObserver.observe(footer);
+    }
+
+
+    // — Compteur animé pour les KPI —
+    const kpiObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const valEl = entry.target.querySelector('.kpi-val');
+            if (!valEl || valEl.dataset.animated) return;
+            valEl.dataset.animated = '1';
+
+            const raw = valEl.textContent.trim();
+            // Extraire le nombre (gère "×20", "~1 100", "3,4", "20", "5,8", "2,8")
+            const numMatch = raw.replace(/\s/g, '').match(/([\d,\.]+)/);
+            if (!numMatch) return;
+
+            const targetStr = numMatch[1].replace(',', '.');
+            const target    = parseFloat(targetStr);
+            if (isNaN(target)) return;
+
+            const prefix  = raw.split(numMatch[1])[0] || '';
+            const suffix  = raw.slice(raw.indexOf(numMatch[1]) + numMatch[1].length) || '';
+            const isFloat = targetStr.includes('.');
+            const decimals = isFloat ? (targetStr.split('.')[1] || '').length : 0;
+            const duration = 1200;
+            const start    = performance.now();
+
+            function tick(now) {
+                const progress = Math.min((now - start) / duration, 1);
+                // Easing out cubic
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const value = target * eased;
+                const display = isFloat
+                    ? value.toFixed(decimals).replace('.', ',')
+                    : Math.round(value).toLocaleString('fr-FR');
+                valEl.textContent = prefix + display + suffix;
+                if (progress < 1) requestAnimationFrame(tick);
+                else valEl.textContent = raw; // restaurer la valeur exacte
+            }
+            requestAnimationFrame(tick);
+            kpiObserver.unobserve(entry.target);
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.kpi-item').forEach(el => kpiObserver.observe(el));
+
+
+    // — Barres de score : animation déclenchée au scroll —
+    // (remplace l'ancien IntersectionObserver sur document.body)
+    const barsTrigger = document.querySelector('.bars-section') || document.querySelector('#barsGrid');
+    const scoreTrigger = document.querySelector('.score-section') || document.querySelector('#scoreBars');
+
+    if (barsTrigger) {
+        new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                document.querySelectorAll('#barsGrid [data-target]').forEach((el, i) => {
+                    setTimeout(() => { el.style.width = el.dataset.target + '%'; }, i * 30);
+                });
+            }
+        }, { threshold: 0.2 }).observe(barsTrigger);
+    }
+
+    if (scoreTrigger) {
+        new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                document.querySelectorAll('#scoreBars [data-target]').forEach((el, i) => {
+                    setTimeout(() => { el.style.width = el.dataset.target + '%'; }, i * 40);
+                });
+            }
+        }, { threshold: 0.2 }).observe(scoreTrigger);
+    }
+
+
+    // — Parallax subtil sur les orbs du hero —
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+            const scrollY = window.scrollY;
+            const orb1 = document.querySelector('.orb1');
+            const orb2 = document.querySelector('.orb2');
+            const orb3 = document.querySelector('.orb3');
+            if (orb1) orb1.style.transform = `translateY(${scrollY * 0.15}px)`;
+            if (orb2) orb2.style.transform = `translateY(${scrollY * -0.1}px)`;
+            if (orb3) orb3.style.transform = `translateY(${scrollY * 0.08}px)`;
+            ticking = false;
+        });
+    }, { passive: true });
+
+
+    // — Indicateur de progression de lecture —
+    const progressBar = document.createElement('div');
+    progressBar.style.cssText = `
+        position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+        background: linear-gradient(90deg, #3fb950, #58a6ff, #ff7b00);
+        z-index: 9999; transition: width 0.1s linear;
+        box-shadow: 0 0 8px rgba(63,185,80,0.5);
+        pointer-events: none;
+    `;
+    document.body.appendChild(progressBar);
+
+    window.addEventListener('scroll', () => {
+        const docHeight    = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled     = (window.scrollY / docHeight) * 100;
+        progressBar.style.width = Math.min(scrolled, 100) + '%';
+    }, { passive: true });
+
+})();
