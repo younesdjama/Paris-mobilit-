@@ -14,29 +14,27 @@
 <!-- ══════════════════════════════════════════════════════════ -->
 <!--  HERO                                                      -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<div class="hero" style="position: relative; height: 100vh; width: 100%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #0d1117;">
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
-        <img src="paris_map.png" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.5;">
+<div class="hero">
+    <div class="hero-map-img">
+        <img src="paris_map.png" alt="Carte de Paris">
     </div>
-
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(13,17,23,0.8), rgba(13,17,23,0.4)); z-index: 2;"></div>
-
-    <div class="hero-content" style="position: relative; z-index: 3; text-align: center; color: white; max-width: 800px; padding: 20px;">
-        <div class="hero-badge" style="margin-bottom: 20px; font-size: 0.9rem; opacity: 0.8; letter-spacing: 1px;">
-            VALORISATION SCIENTIFIQUE · MASTER GÉOMATIQUE · 2026
-        </div>
-        <h1 class="hero-title" style="font-size: 4rem; line-height: 1.1; margin-bottom: 20px; font-family: 'Playfair Display', serif;">
+    
+    <div class="hero-overlay"></div>
+    
+    <div class="hero-content">
+        <div class="hero-badge">Valorisation Scientifique · Master Géomatique · 2026</div>
+        <h1 class="hero-title">
             Paris :<br>
-            <span style="color: #3fb950;">Territoire, Mobilité</span><br>
-            <i style="font-weight: 400; opacity: 0.9;">& Carbone</i>
+            <span class="hero-accent">Territoire, Mobilité</span><br>
+            <span style="font-style: italic; opacity: 0.8;">& Carbone</span>
         </h1>
-        <p style="font-size: 1.2rem; margin-bottom: 40px; opacity: 0.8; line-height: 1.6;">
-            Quatre indicateurs, une même fracture territoriale —<br>
-            densité, espaces verts, mobilité douce et émissions CO₂.
+        <p class="hero-sub">
+            Analyse croisée des inégalités environnementales :<br>
+            densité, espaces verts et empreinte carbone.
         </p>
-        <div class="hero-nav" style="display: flex; gap: 20px; justify-content: center;">
-            <a href="#section-intro" style="color: white; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); padding: 10px 20px; border-radius: 30px; font-size: 0.9rem;">① Contexte</a>
-            <a href="#section-carte" style="color: white; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); padding: 10px 20px; border-radius: 30px; font-size: 0.9rem;">② Carte</a>
+        <div class="hero-nav">
+            <a href="#section-intro">① Contexte</a>
+            <a href="#section-carte">② Carte interactive</a>
         </div>
     </div>
 </div>
