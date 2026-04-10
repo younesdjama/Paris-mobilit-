@@ -15,12 +15,16 @@
 <!--  HERO                                                      -->
 <!-- ══════════════════════════════════════════════════════════ -->
 <div class="hero">
+    <div class="hero-map-img" id="hero-map-img">
+        <img src="infographie_paris.jpg" alt="Plan Paris" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.4;">
+    </div>
+    
     <div class="hero-bg">
         <div class="hero-orb orb1"></div>
         <div class="hero-orb orb2"></div>
         <div class="hero-orb orb3"></div>
-        <div class="hero-grid"></div>
     </div>
+    
     <div class="hero-content">
         <div class="hero-badge">Valorisation Scientifique · Master Géomatique · Université de Strasbourg · 2026</div>
         <h1 class="hero-title">
@@ -40,7 +44,12 @@
             <a href="#section-infographie" class="hn-link">④ Infographie</a>
             <a href="#section-dataviz" class="hn-link">⑤ Dataviz</a>
         </div>
-        <div class="hero-scroll">↓</div>
+        <div class="hero-scroll">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="14" cy="14" r="13" stroke="rgba(139,148,158,0.4)" stroke-width="1"/>
+                <path d="M14 9v10M10 15l4 4 4-4" stroke="#8b949e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
     </div>
 </div>
 
@@ -75,32 +84,205 @@
                 </div>
             </div>
             <div class="kpi-panel">
-                <div class="kpi-item">
+                <div class="kpi-item reveal reveal-delay-1">
                     <div class="kpi-val">20</div>
                     <div class="kpi-lab">arrondissements analysés</div>
                 </div>
-                <div class="kpi-item kpi-alert">
+                <div class="kpi-item kpi-alert reveal reveal-delay-2">
                     <div class="kpi-val">×20</div>
                     <div class="kpi-lab">écart d'accès aux espaces verts</div>
                 </div>
-                <div class="kpi-item">
+                <div class="kpi-item reveal reveal-delay-3">
                     <div class="kpi-val">~1 100</div>
                     <div class="kpi-lab">km de pistes cyclables</div>
                 </div>
-                <div class="kpi-item kpi-co2">
+                <div class="kpi-item kpi-co2 reveal reveal-delay-4">
                     <div class="kpi-val">3,4</div>
                     <div class="kpi-lab">tCO₂eq/hab/an · moyenne Paris</div>
                 </div>
-                <div class="kpi-item">
+                <div class="kpi-item reveal reveal-delay-5">
                     <div class="kpi-val">5,8</div>
                     <div class="kpi-lab">tCO₂eq/hab · max (8e)</div>
                 </div>
-                <div class="kpi-item kpi-green">
+                <div class="kpi-item kpi-green reveal reveal-delay-6">
                     <div class="kpi-val">2,8</div>
                     <div class="kpi-lab">tCO₂eq/hab · min (12e, 19e)</div>
                 </div>
             </div>
         </div>
+
+        <!-- ── WIDGET STRIP : 4 logos animés ── -->
+        <div class="widget-strip">
+
+            <!-- Widget CO₂ Thermomètre -->
+            <div class="widget-card reveal reveal-delay-1">
+                <div class="widget-label">Empreinte carbone</div>
+                <div class="widget-co2-wrap">
+                    <svg class="thermo-svg" viewBox="0 0 60 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- tube -->
+                        <rect x="22" y="10" width="16" height="100" rx="8" fill="rgba(255,123,0,0.1)" stroke="rgba(255,123,0,0.3)" stroke-width="1.5"/>
+                        <!-- mercure animé -->
+                        <rect class="thermo-fill" x="26" y="30" width="8" height="80" rx="4" fill="url(#thermoGrad)"/>
+                        <!-- bulbe -->
+                        <circle cx="30" cy="120" r="14" fill="rgba(255,123,0,0.2)" stroke="#ff7b00" stroke-width="1.5"/>
+                        <circle cx="30" cy="120" r="9" fill="#ff7b00"/>
+                        <!-- graduation marks -->
+                        <line x1="38" y1="25" x2="44" y2="25" stroke="rgba(255,123,0,0.5)" stroke-width="1"/>
+                        <line x1="38" y1="45" x2="48" y2="45" stroke="rgba(255,123,0,0.7)" stroke-width="1"/>
+                        <line x1="38" y1="65" x2="44" y2="65" stroke="rgba(255,123,0,0.5)" stroke-width="1"/>
+                        <line x1="38" y1="85" x2="48" y2="85" stroke="rgba(255,123,0,0.7)" stroke-width="1"/>
+                        <line x1="38" y1="105" x2="44" y2="105" stroke="rgba(255,123,0,0.5)" stroke-width="1"/>
+                        <!-- labels -->
+                        <text x="50" y="49" fill="#ff7b00" font-size="7" font-family="Inter,sans-serif">5,8t</text>
+                        <text x="50" y="89" fill="#d29922" font-size="7" font-family="Inter,sans-serif">3,4t</text>
+                        <defs>
+                            <linearGradient id="thermoGrad" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#f85149"/>
+                                <stop offset="60%" stop-color="#ff7b00"/>
+                                <stop offset="100%" stop-color="#d29922"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="widget-co2-vals">
+                        <div class="wco2-num">3,4<span>t</span></div>
+                        <div class="wco2-unit">CO₂eq/hab/an</div>
+                        <div class="wco2-range">
+                            <span class="wco2-min">2,8</span>
+                            <div class="wco2-bar">
+                                <div class="wco2-fill"></div>
+                                <div class="wco2-marker"></div>
+                            </div>
+                            <span class="wco2-max">5,8</span>
+                        </div>
+                        <div class="wco2-target">Objectif 2030 : <strong>2,0 t</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Widget Arbre / Espaces verts -->
+            <div class="widget-card reveal reveal-delay-2">
+                <div class="widget-label">Espaces verts</div>
+                <div class="widget-tree-wrap">
+                    <svg class="tree-svg" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Sol -->
+                        <ellipse cx="60" cy="128" rx="40" ry="6" fill="rgba(63,185,80,0.15)"/>
+                        <!-- Tronc -->
+                        <rect x="53" y="90" width="14" height="38" rx="5" fill="#5a3e28"/>
+                        <!-- Couronnes -->
+                        <ellipse cx="60" cy="85" rx="38" ry="30" fill="rgba(63,185,80,0.2)" stroke="rgba(63,185,80,0.3)" stroke-width="1"/>
+                        <ellipse cx="60" cy="68" rx="30" ry="26" fill="rgba(63,185,80,0.3)" stroke="rgba(63,185,80,0.4)" stroke-width="1"/>
+                        <ellipse cx="60" cy="50" rx="22" ry="22" fill="rgba(63,185,80,0.45)" stroke="#3fb950" stroke-width="1.5"/>
+                        <ellipse cx="60" cy="35" rx="14" ry="16" fill="#3fb950" stroke="#2ea043" stroke-width="1"/>
+                        <!-- Highlight -->
+                        <ellipse cx="55" cy="30" rx="5" ry="6" fill="rgba(255,255,255,0.1)"/>
+                        <!-- Seuil OMS badge -->
+                        <rect x="5" y="8" width="50" height="18" rx="5" fill="rgba(63,185,80,0.15)" stroke="rgba(63,185,80,0.3)" stroke-width="1"/>
+                        <text x="30" y="21" fill="#3fb950" font-size="8.5" font-family="Inter,sans-serif" text-anchor="middle">OMS : 9 m²/hab</text>
+                        <!-- Paris actual -->
+                        <rect x="65" y="8" width="50" height="18" rx="5" fill="rgba(248,81,73,0.1)" stroke="rgba(248,81,73,0.3)" stroke-width="1"/>
+                        <text x="90" y="21" fill="#f85149" font-size="8.5" font-family="Inter,sans-serif" text-anchor="middle">Paris : 4,6 m²</text>
+                    </svg>
+                    <div class="widget-tree-stats">
+                        <div class="wt-row"><span class="wt-dot" style="background:#3fb950"></span><span>16e : <b style="color:#3fb950">56,3 m²</b></span></div>
+                        <div class="wt-row"><span class="wt-dot" style="background:#d29922"></span><span>Moy. Paris : <b style="color:#d29922">4,6 m²</b></span></div>
+                        <div class="wt-row"><span class="wt-dot" style="background:#f85149"></span><span>2e : <b style="color:#f85149">0,2 m²</b></span></div>
+                        <div class="wt-deficit">Seulement <strong>3/20</strong> arrondissements<br>atteignent le seuil OMS</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Widget Vélo / Mobilité douce -->
+            <div class="widget-card reveal reveal-delay-3">
+                <div class="widget-label">Mobilité douce</div>
+                <svg class="velo-svg" viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Route -->
+                    <rect x="0" y="72" width="160" height="28" rx="0" fill="rgba(48,54,61,0.5)"/>
+                    <rect x="0" y="72" width="160" height="4" rx="0" fill="rgba(88,166,255,0.3)"/>
+                    <!-- Pointillés route -->
+                    <line x1="20" y1="86" x2="40" y2="86" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-dasharray="4 4"/>
+                    <line x1="60" y1="86" x2="80" y2="86" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-dasharray="4 4"/>
+                    <line x1="100" y1="86" x2="120" y2="86" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-dasharray="4 4"/>
+                    <!-- Vélo corps -->
+                    <circle cx="48" cy="65" r="14" stroke="#58a6ff" stroke-width="2" fill="rgba(88,166,255,0.08)"/>
+                    <circle cx="48" cy="65" r="4" fill="#58a6ff"/>
+                    <circle cx="112" cy="65" r="14" stroke="#58a6ff" stroke-width="2" fill="rgba(88,166,255,0.08)"/>
+                    <circle cx="112" cy="65" r="4" fill="#58a6ff"/>
+                    <!-- Cadre -->
+                    <path d="M62 65 L80 35 L98 65 L62 65" stroke="#58a6ff" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
+                    <path d="M80 35 L112 65" stroke="#58a6ff" stroke-width="1.8"/>
+                    <path d="M80 35 L80 28 L90 26 M80 28 L72 26" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round"/>
+                    <!-- Pédalier -->
+                    <circle cx="80" cy="65" r="5" stroke="#58a6ff" stroke-width="1.5" fill="rgba(88,166,255,0.1)"/>
+                    <!-- Selle -->
+                    <path d="M98 55 L106 53 L110 53" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round"/>
+                    <!-- Rayons roue avant -->
+                    <line x1="48" y1="51" x2="48" y2="65" stroke="rgba(88,166,255,0.3)" stroke-width="1"/>
+                    <line x1="34" y1="65" x2="48" y2="65" stroke="rgba(88,166,255,0.3)" stroke-width="1"/>
+                    <!-- Rayons roue arrière -->
+                    <line x1="112" y1="51" x2="112" y2="65" stroke="rgba(88,166,255,0.3)" stroke-width="1"/>
+                    <line x1="98" y1="65" x2="112" y2="65" stroke="rgba(88,166,255,0.3)" stroke-width="1"/>
+                    <!-- Stats au-dessus -->
+                    <text x="80" y="16" fill="#58a6ff" font-size="13" font-weight="bold" font-family="Inter,sans-serif" text-anchor="middle">~1 100 km</text>
+                    <text x="80" y="26" fill="#8b949e" font-size="7.5" font-family="Inter,sans-serif" text-anchor="middle">de pistes cyclables à Paris</text>
+                </svg>
+                <div class="widget-velo-stats">
+                    <div class="wv-row"><span class="wv-icon">↑</span><span>12e : <b style="color:#3fb950">62,8 km</b></span></div>
+                    <div class="wv-row"><span class="wv-icon" style="color:#8b949e">—</span><span>Moy. : <b style="color:#d29922">29 km</b></span></div>
+                    <div class="wv-row"><span class="wv-icon" style="color:#f85149">↓</span><span>2e : <b style="color:#f85149">9,1 km</b></span></div>
+                </div>
+            </div>
+
+            <!-- Widget Densité / Ville -->
+            <div class="widget-card reveal reveal-delay-4">
+                <div class="widget-label">Densité urbaine</div>
+                <svg class="city-svg" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Bâtiments arrière-plan (gris) -->
+                    <rect x="5"   y="70" width="12" height="46" rx="1" fill="rgba(48,54,61,0.6)"/>
+                    <rect x="19"  y="55" width="14" height="61" rx="1" fill="rgba(48,54,61,0.7)"/>
+                    <rect x="35"  y="80" width="10" height="36" rx="1" fill="rgba(48,54,61,0.5)"/>
+                    <rect x="130" y="65" width="12" height="51" rx="1" fill="rgba(48,54,61,0.6)"/>
+                    <rect x="144" y="50" width="11" height="66" rx="1" fill="rgba(48,54,61,0.7)"/>
+                    <!-- Bâtiments colorés (premier plan) -->
+                    <rect x="52"  y="60" width="15" height="56" rx="2" fill="rgba(248,81,73,0.25)" stroke="rgba(248,81,73,0.4)" stroke-width="1"/>
+                    <rect x="69"  y="40" width="18" height="76" rx="2" fill="rgba(248,81,73,0.35)" stroke="#f85149" stroke-width="1.2"/>
+                    <rect x="89"  y="50" width="16" height="66" rx="2" fill="rgba(248,81,73,0.3)" stroke="rgba(248,81,73,0.4)" stroke-width="1"/>
+                    <rect x="107" y="68" width="14" height="48" rx="2" fill="rgba(248,81,73,0.2)" stroke="rgba(248,81,73,0.3)" stroke-width="1"/>
+                    <!-- Fenêtres -->
+                    <rect x="73"  y="46" width="4" height="4" rx="0.5" fill="rgba(255,255,255,0.15)"/>
+                    <rect x="81"  y="46" width="4" height="4" rx="0.5" fill="rgba(255,255,255,0.2)"/>
+                    <rect x="73"  y="55" width="4" height="4" rx="0.5" fill="rgba(255,255,255,0.1)"/>
+                    <rect x="81"  y="55" width="4" height="4" rx="0.5" fill="rgba(255,255,255,0.18)"/>
+                    <rect x="93"  y="56" width="4" height="4" rx="0.5" fill="rgba(255,255,255,0.15)"/>
+                    <rect x="56"  y="66" width="3" height="3" rx="0.5" fill="rgba(255,255,255,0.15)"/>
+                    <rect x="62"  y="66" width="3" height="3" rx="0.5" fill="rgba(255,255,255,0.1)"/>
+                    <!-- Sol -->
+                    <rect x="0" y="114" width="160" height="6" fill="rgba(48,54,61,0.8)"/>
+                    <!-- Label density -->
+                    <rect x="44" y="8" width="72" height="22" rx="5" fill="rgba(248,81,73,0.1)" stroke="rgba(248,81,73,0.3)" stroke-width="1"/>
+                    <text x="80" y="23" fill="#f85149" font-size="10" font-weight="bold" font-family="Inter,sans-serif" text-anchor="middle">41 400 hab/km²</text>
+                    <!-- Arrow -->
+                    <text x="80" y="36" fill="#8b949e" font-size="7.5" font-family="Inter,sans-serif" text-anchor="middle">11e — le plus dense</text>
+                </svg>
+                <div class="widget-density-stats">
+                    <div class="wd-bar-wrap">
+                        <span class="wd-lbl">11e</span>
+                        <div class="wd-track"><div class="wd-fill" style="width:100%;background:#f85149;"></div></div>
+                        <span class="wd-val" style="color:#f85149">41 400</span>
+                    </div>
+                    <div class="wd-bar-wrap">
+                        <span class="wd-lbl">Moy.</span>
+                        <div class="wd-track"><div class="wd-fill" style="width:58%;background:#d29922;"></div></div>
+                        <span class="wd-val" style="color:#d29922">24 000</span>
+                    </div>
+                    <div class="wd-bar-wrap">
+                        <span class="wd-lbl">12e</span>
+                        <div class="wd-track"><div class="wd-fill" style="width:21%;background:#3fb950;"></div></div>
+                        <span class="wd-val" style="color:#3fb950">8 800</span>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /widget-strip -->
     </div>
 </section>
 
@@ -109,8 +291,7 @@
 <!-- ══════════════════════════════════════════════════════════ -->
 <section id="section-carte" class="section-dark">
     <div class="wrap">
-        <div class="section-header">
-            <span class="tag tag-green">① Géovisualisation · Leaflet.js</span>
+        <div class="section-header reveal">
             <h2>Densité, espaces verts & mobilité douce</h2>
             <p class="section-desc">
                 Cliquez sur un arrondissement pour révéler ses quatre indicateurs.
@@ -122,16 +303,29 @@
             <!-- Sidebar -->
             <aside class="sidebar" id="sidebar">
                 <div id="sidebarDefault" class="sb-default">
-                    <div class="sb-icon">🗺️</div>
+                    <div class="sb-icon">
+                        <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="26" cy="26" r="25" stroke="rgba(63,185,80,0.25)" stroke-width="1.5"/>
+                            <path d="M26 12C20.477 12 16 16.477 16 22c0 8 10 18 10 18s10-10 10-18c0-5.523-4.477-10-10-10z" fill="rgba(63,185,80,0.15)" stroke="#3fb950" stroke-width="1.5"/>
+                            <circle cx="26" cy="22" r="3.5" fill="#3fb950"/>
+                            <path d="M16 38l5-4 8 3 7-4" stroke="rgba(88,166,255,0.5)" stroke-width="1" stroke-linecap="round"/>
+                        </svg>
+                    </div>
                     <p class="sb-hint">Cliquez sur un arrondissement pour révéler ses indicateurs environnementaux</p>
                     <div class="zoom-section">
                         <p class="zoom-label">🔍 Zooms rapides</p>
-                        <button class="zbtn" data-lat="48.859" data-lng="2.375" data-zoom="14">🔴 11e · Plus dense</button>
-                        <button class="zbtn" data-lat="48.863" data-lng="2.274" data-zoom="14">🟢 16e · Plus vert</button>
-                        <button class="zbtn" data-lat="48.840" data-lng="2.420" data-zoom="14">🌲 12e · Vincennes</button>
-                        <button class="zbtn" data-lat="48.865" data-lng="2.400" data-zoom="14">🚴 20e · Est</button>
-                        <button class="zbtn" data-lat="48.8729" data-lng="2.295" data-zoom="14">💨 8e · + CO₂</button>
-                        <button class="zbtn" data-lat="48.8566" data-lng="2.3522" data-zoom="12">↩ Vue globale</button>
+                        <button class="zbtn" data-lat="48.859" data-lng="2.375" data-zoom="14">
+                            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="6" fill="rgba(248,81,73,0.2)" stroke="#f85149" stroke-width="1.2"/><path d="M7 4v6M4 7h6" stroke="#f85149" stroke-width="1.2" stroke-linecap="round"/></svg> 11e · Plus dense</button>
+                        <button class="zbtn" data-lat="48.863" data-lng="2.274" data-zoom="14">
+                            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="6" fill="rgba(63,185,80,0.2)" stroke="#3fb950" stroke-width="1.2"/><path d="M7 3C5.5 3 4 4.5 4 6c0 2.5 3 5 3 5s3-2.5 3-5c0-1.5-1.5-3-3-3z" fill="rgba(63,185,80,0.3)" stroke="#3fb950" stroke-width="1"/></svg> 16e · Plus vert</button>
+                        <button class="zbtn" data-lat="48.840" data-lng="2.420" data-zoom="14">
+                            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 11 C3 8 5 7 5 4" stroke="#3fb950" stroke-width="1.2" stroke-linecap="round"/><path d="M7 11 C7 7 9 6 9 2" stroke="#3fb950" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/><path d="M1 11h12" stroke="#3fb950" stroke-width="1" stroke-linecap="round" opacity="0.4"/></svg> 12e · Vincennes</button>
+                        <button class="zbtn" data-lat="48.865" data-lng="2.400" data-zoom="14">
+                            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="3.5" cy="9.5" r="1.5" stroke="#58a6ff" stroke-width="1.2"/><circle cx="10.5" cy="9.5" r="1.5" stroke="#58a6ff" stroke-width="1.2"/><path d="M3.5 9.5V6L7 3.5l3.5 2.5v1" stroke="#58a6ff" stroke-width="1.2" stroke-linecap="round"/></svg> 20e · Est</button>
+                        <button class="zbtn" data-lat="48.8729" data-lng="2.295" data-zoom="14">
+                            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 10c0-2 1.5-3 2-5" stroke="#ff7b00" stroke-width="1.2" stroke-linecap="round"/><path d="M7 10c0-1.5 1-2.5 1-4.5" stroke="#ff7b00" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/><path d="M10 10c0-2 1.5-2.5 1.5-5" stroke="#ff7b00" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/><path d="M2 10h10" stroke="#ff7b00" stroke-width="1" stroke-linecap="round" opacity="0.4"/></svg> 8e · + CO₂</button>
+                        <button class="zbtn" data-lat="48.8566" data-lng="2.3522" data-zoom="12">
+                            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" stroke="#8b949e" stroke-width="1.2"/><path d="M7 4v3l2 2" stroke="#8b949e" stroke-width="1.2" stroke-linecap="round"/></svg> Vue globale</button>
                     </div>
                 </div>
                 <div id="sidebarStats" class="sb-stats hidden">
@@ -143,22 +337,30 @@
                     </div>
                     <div class="sb-indicators">
                         <div class="sb-ind">
-                            <div class="sb-ind-icon">🏙️</div>
+                            <div class="sb-ind-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="8" height="8" rx="1.5" fill="rgba(248,81,73,0.2)" stroke="#f85149" stroke-width="1.5"/><rect x="14" y="2" width="8" height="8" rx="1.5" fill="rgba(248,81,73,0.15)" stroke="#f85149" stroke-width="1.5" opacity="0.7"/><rect x="2" y="14" width="8" height="8" rx="1.5" fill="rgba(248,81,73,0.15)" stroke="#f85149" stroke-width="1.5" opacity="0.7"/><rect x="14" y="14" width="8" height="8" rx="1.5" fill="rgba(248,81,73,0.1)" stroke="#f85149" stroke-width="1.5" opacity="0.5"/></svg>
+                            </div>
                             <div class="sb-ind-val" id="sbDensite">—</div>
                             <div class="sb-ind-lab">hab/km²</div>
                         </div>
                         <div class="sb-ind">
-                            <div class="sb-ind-icon">🌳</div>
+                            <div class="sb-ind-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3C9 3 6 6 6 9c0 4 6 12 6 12s6-8 6-12c0-3-3-6-6-6z" fill="rgba(63,185,80,0.15)" stroke="#3fb950" stroke-width="1.5"/><circle cx="12" cy="9" r="2" fill="#3fb950"/></svg>
+                            </div>
                             <div class="sb-ind-val" id="sbVert">—</div>
                             <div class="sb-ind-lab">m²/hab verts</div>
                         </div>
                         <div class="sb-ind">
-                            <div class="sb-ind-icon">🚴</div>
+                            <div class="sb-ind-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="7" cy="18" r="2" stroke="#58a6ff" stroke-width="1.5"/><circle cx="17" cy="18" r="2" stroke="#58a6ff" stroke-width="1.5"/><path d="M7 18V10l5-5 5 5v2M7 14h5" stroke="#58a6ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="15" cy="7" r="2" fill="rgba(88,166,255,0.15)" stroke="#58a6ff" stroke-width="1.5"/></svg>
+                            </div>
                             <div class="sb-ind-val" id="sbVelo">—</div>
                             <div class="sb-ind-lab">km pistes</div>
                         </div>
                         <div class="sb-ind sb-ind-co2" id="sbIndCo2">
-                            <div class="sb-ind-icon">💨</div>
+                            <div class="sb-ind-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 18c0-4 3-6 4-10" stroke="#ff7b00" stroke-width="1.5" stroke-linecap="round"/><path d="M12 18c0-3 2-5 2-8" stroke="#ff7b00" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/><path d="M18 18c0-4 3-5 3-9" stroke="#ff7b00" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/><path d="M3 18h18" stroke="#ff7b00" stroke-width="1" stroke-linecap="round" opacity="0.5"/></svg>
+                            </div>
                             <div class="sb-ind-val" id="sbCo2">—</div>
                             <div class="sb-ind-lab">tCO₂/hab/an</div>
                         </div>
@@ -207,7 +409,7 @@
 <!-- ══════════════════════════════════════════════════════════ -->
 <section id="section-co2" class="section-co2">
     <div class="wrap">
-        <div class="section-header">
+        <div class="section-header reveal">
             <span class="tag tag-co2">② Analyse CO₂ · AIRPARIF / APUR</span>
             <h2>Carbone & inégalités : une double peine</h2>
             <p class="section-desc">
@@ -221,7 +423,9 @@
         <!-- Cards CO2 extrêmes -->
         <div class="co2-extremes">
             <div class="co2-card co2-worst">
-                <div class="co2-c-badge">💨 Maximum</div>
+                <div class="co2-c-badge">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:4px"><path d="M2 9c0-2 1.5-3 2-5" stroke="#f85149" stroke-width="1.2" stroke-linecap="round"/><path d="M6 9c0-1.5 1-2.5 1-4.5" stroke="#f85149" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/><path d="M10 9c0-2 1.5-2.5 1.5-5" stroke="#f85149" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/><line x1="1" y1="9" x2="11" y2="9" stroke="#f85149" stroke-width="0.8" opacity="0.4"/></svg>
+                    Maximum</div>
                 <div class="co2-c-arr">8<sup>e</sup> arrondissement</div>
                 <div class="co2-c-val">5,8 <small>tCO₂eq/hab/an</small></div>
                 <div class="co2-c-detail">
@@ -233,7 +437,9 @@
             </div>
             <div class="co2-arrow">→</div>
             <div class="co2-card co2-avg">
-                <div class="co2-c-badge">📊 Moyenne Paris</div>
+                <div class="co2-c-badge">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:4px"><rect x="1" y="3" width="3" height="7" rx="0.5" fill="rgba(210,153,34,0.4)" stroke="#d29922" stroke-width="0.8"/><rect x="5" y="1" width="3" height="9" rx="0.5" fill="rgba(210,153,34,0.6)" stroke="#d29922" stroke-width="0.8"/><rect x="9" y="4" width="3" height="6" rx="0.5" fill="rgba(210,153,34,0.3)" stroke="#d29922" stroke-width="0.8"/></svg>
+                    Moyenne Paris</div>
                 <div class="co2-c-arr">Tous arrondissements</div>
                 <div class="co2-c-val">3,4 <small>tCO₂eq/hab/an</small></div>
                 <div class="co2-c-detail">
@@ -244,7 +450,9 @@
             </div>
             <div class="co2-arrow">→</div>
             <div class="co2-card co2-best">
-                <div class="co2-c-badge">🌱 Minimum</div>
+                <div class="co2-c-badge">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:4px"><path d="M6 1 C4 1 2 3 2 5c0 3 4 7 4 7s4-4 4-7c0-2-2-4-4-4z" fill="rgba(63,185,80,0.3)" stroke="#3fb950" stroke-width="1"/><circle cx="6" cy="5" r="1.5" fill="#3fb950"/></svg>
+                    Minimum</div>
                 <div class="co2-c-arr">12<sup>e</sup> & 19<sup>e</sup></div>
                 <div class="co2-c-val">2,8 <small>tCO₂eq/hab/an</small></div>
                 <div class="co2-c-detail">
@@ -269,22 +477,59 @@
 
         <!-- Analyse textuelle -->
         <div class="analyse-grid">
-            <div class="analyse-card">
-                <div class="ac-icon">🔗</div>
+            <div class="analyse-card reveal reveal-delay-1">
+                <div class="ac-icon">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 20 C5 13 10 10 10 4" stroke="#3fb950" stroke-width="1.8" stroke-linecap="round"/>
+                        <path d="M13 20 C13 15 16 12 16 6" stroke="#58a6ff" stroke-width="1.8" stroke-linecap="round"/>
+                        <path d="M8 10 L12 8 L10 13" fill="rgba(63,185,80,0.3)" stroke="#3fb950" stroke-width="1" stroke-linejoin="round"/>
+                        <circle cx="21" cy="18" r="3.5" stroke="#58a6ff" stroke-width="1.5" fill="rgba(88,166,255,0.1)"/>
+                        <circle cx="5"  cy="18" r="3.5" stroke="#3fb950" stroke-width="1.5" fill="rgba(63,185,80,0.1)"/>
+                        <path d="M9 18 L17 18" stroke="var(--border)" stroke-width="1" stroke-dasharray="2 2"/>
+                    </svg>
+                </div>
                 <h4>Corrélation mobilité douce / CO₂</h4>
                 <p>Les arrondissements dotés de plus de pistes cyclables par habitant présentent en moyenne
                    des émissions de CO₂ inférieures de <strong>18 %</strong> à ceux sous-équipés.
                    La mobilité active agit directement sur la part modale automobile.</p>
             </div>
-            <div class="analyse-card">
-                <div class="ac-icon">🌳</div>
+            <div class="analyse-card reveal reveal-delay-2">
+                <div class="ac-icon">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="11" y="17" width="4" height="7" rx="1.5" fill="#5a3e28"/>
+                        <ellipse cx="13" cy="16" rx="8" ry="6" fill="rgba(63,185,80,0.2)" stroke="rgba(63,185,80,0.4)" stroke-width="1"/>
+                        <ellipse cx="13" cy="12" rx="6" ry="5" fill="rgba(63,185,80,0.35)" stroke="rgba(63,185,80,0.5)" stroke-width="1"/>
+                        <ellipse cx="13" cy="8"  rx="4.5" ry="4.5" fill="#3fb950" stroke="#2ea043" stroke-width="1"/>
+                        <path d="M8 18 C6 16 7 12 10 12" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                        <!-- CO2 molecule small -->
+                        <circle cx="20" cy="5" r="2" fill="rgba(255,123,0,0.3)" stroke="#ff7b00" stroke-width="1"/>
+                        <circle cx="24" cy="5" r="1.5" fill="rgba(255,123,0,0.2)" stroke="#ff7b00" stroke-width="0.8"/>
+                        <circle cx="16" cy="5" r="1.5" fill="rgba(255,123,0,0.2)" stroke="#ff7b00" stroke-width="0.8"/>
+                        <line x1="18" y1="5" x2="22" y2="5" stroke="#ff7b00" stroke-width="0.8"/>
+                        <!-- Arrow down (absorb) -->
+                        <path d="M20 8 L20 11" stroke="#3fb950" stroke-width="1" stroke-linecap="round"/>
+                        <path d="M18 10 L20 12 L22 10" stroke="#3fb950" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
                 <h4>Puits de carbone & verdure</h4>
                 <p>Au-delà des émissions, les espaces verts jouent un rôle de <strong>puits carbone</strong>
                    et de régulation thermique. Le 16e et le 12e, grâce aux bois, compensent
                    partiellement leurs émissions résidentielles.</p>
             </div>
-            <div class="analyse-card">
-                <div class="ac-icon">📍</div>
+            <div class="analyse-card reveal reveal-delay-3">
+                <div class="ac-icon">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- City blocks representing inequality -->
+                        <rect x="2"  y="14" width="5" height="10" rx="1" fill="rgba(248,81,73,0.3)" stroke="#f85149" stroke-width="1"/>
+                        <rect x="9"  y="9"  width="5" height="15" rx="1" fill="rgba(248,81,73,0.4)" stroke="#f85149" stroke-width="1.2"/>
+                        <rect x="16" y="17" width="5" height="7"  rx="1" fill="rgba(248,81,73,0.2)" stroke="rgba(248,81,73,0.5)" stroke-width="1"/>
+                        <!-- Warning triangle -->
+                        <path d="M21 2 L26 10 L16 10 Z" fill="rgba(210,153,34,0.2)" stroke="#d29922" stroke-width="1.2" stroke-linejoin="round"/>
+                        <text x="21" y="9" fill="#d29922" font-size="5" font-family="Inter,sans-serif" text-anchor="middle" font-weight="bold">!</text>
+                        <!-- Ground -->
+                        <line x1="1" y1="24" x2="25" y2="24" stroke="var(--border)" stroke-width="1"/>
+                    </svg>
+                </div>
                 <h4>Inégalité environnementale cumulée</h4>
                 <p>Les arrondissements du nord-est (10e, 11e, 18e, 20e) cumulent
                    <strong>forte densité</strong>, <strong>faibles espaces verts</strong>
@@ -300,7 +545,7 @@
 <!-- ══════════════════════════════════════════════════════════ -->
 <section id="section-infographie" class="section-light">
     <div class="wrap">
-        <div class="section-header">
+        <div class="section-header reveal">
             <span class="tag tag-orange">③ Infographie · QGIS & HTML/CSS</span>
             <h2>Le paradoxe de la ville verte</h2>
             <p class="section-desc">
@@ -311,9 +556,11 @@
         </div>
 
         <!-- Comparaison extrêmes -->
-        <div class="compare-row">
+        <div class="compare-row reveal reveal-scale">
             <div class="cmp-card cmp-green">
-                <div class="cmp-emoji">🌳</div>
+                <div class="cmp-emoji">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 3C10 3 7 6 7 10c0 6 7 15 7 15s7-9 7-15c0-4-3-7-7-7z" fill="rgba(63,185,80,0.25)" stroke="#3fb950" stroke-width="1.5"/><circle cx="14" cy="10" r="2.5" fill="#3fb950"/></svg>
+                    </div>
                 <div class="cmp-arr">16<sup>e</sup></div>
                 <div class="cmp-val">56,3 <small>m²/hab</small></div>
                 <div class="cmp-sub">espaces verts</div>
@@ -329,7 +576,9 @@
                 <div class="cmp-line"></div>
             </div>
             <div class="cmp-card cmp-red">
-                <div class="cmp-emoji">🏙️</div>
+                <div class="cmp-emoji">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="4" y="14" width="5" height="10" fill="rgba(248,81,73,0.2)" stroke="#f85149" stroke-width="1.3"/><rect x="11" y="9" width="6" height="15" fill="rgba(248,81,73,0.2)" stroke="#f85149" stroke-width="1.3"/><rect x="19" y="12" width="5" height="12" fill="rgba(248,81,73,0.15)" stroke="#f85149" stroke-width="1.3"/><path d="M2 24h24" stroke="#f85149" stroke-width="1" stroke-linecap="round" opacity="0.4"/></svg>
+                    </div>
                 <div class="cmp-arr">11<sup>e</sup></div>
                 <div class="cmp-val">0,8 <small>m²/hab</small></div>
                 <div class="cmp-sub">espaces verts</div>
@@ -342,7 +591,7 @@
         </div>
 
         <!-- Score environnemental par arrondissement -->
-        <div class="score-section">
+        <div class="score-section reveal">
             <h3>Score environnemental composite <span class="score-info">ℹ️</span></h3>
             <p class="score-legend">Combine : espaces verts (40%) + pistes cyclables (30%) + émissions CO₂ inversées (30%)</p>
             <div class="score-bars" id="scoreBars"></div>
@@ -357,7 +606,7 @@
         </div>
 
         <!-- Barres espaces verts -->
-        <div class="bars-section">
+        <div class="bars-section reveal">
             <h3>Espaces verts par habitant — 20 arrondissements</h3>
             <p class="bars-sub">Classés par densité décroissante · ✅ = seuil OMS atteint (9 m²/hab)</p>
             <div class="bars-grid" id="barsGrid"></div>
@@ -375,7 +624,7 @@
 <!-- ══════════════════════════════════════════════════════════ -->
 <section id="section-dataviz" class="section-dark">
     <div class="wrap">
-        <div class="section-header">
+        <div class="section-header reveal">
             <span class="tag tag-blue">④ Dataviz Interactive · Chart.js</span>
             <h2>Quatre indicateurs, une même inégalité</h2>
             <p class="section-desc">
@@ -385,11 +634,11 @@
         </div>
 
         <div class="chart-tabs">
-            <button class="ctab active" data-view="verts">🌳 Espaces verts</button>
-            <button class="ctab" data-view="velo">🚴 Pistes cyclables</button>
-            <button class="ctab" data-view="co2">💨 Émissions CO₂</button>
-            <button class="ctab" data-view="score">🏆 Score environnemental</button>
-            <button class="ctab" data-view="combine">📊 Vue combinée</button>
+            <button class="ctab active" data-view="verts"><svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 1C5 1 3 3 3 5.5c0 3 4.5 8.5 4.5 8.5s4.5-5.5 4.5-8.5C12 3 10 1 7.5 1z" fill="rgba(63,185,80,0.3)" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="5.5" r="1.5" fill="currentColor"/></svg> Espaces verts</button>
+            <button class="ctab" data-view="velo"><svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="3.5" cy="11" r="2" stroke="currentColor" stroke-width="1.2"/><circle cx="11.5" cy="11" r="2" stroke="currentColor" stroke-width="1.2"/><path d="M3.5 11V6l4-3 4 3v2M3.5 8.5H7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="10" cy="4" r="1.5" stroke="currentColor" stroke-width="1.2"/></svg> Pistes cyclables</button>
+            <button class="ctab" data-view="co2"><svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12c0-3 2-4 2.5-7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7.5 12c0-2 1.5-3.5 1.5-6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/><path d="M11 12c0-3 2-3.5 2-6.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/><path d="M1.5 12h12" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.5"/></svg> Émissions CO₂</button>
+            <button class="ctab" data-view="score"><svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 1.5l1.6 3.2 3.5.5-2.5 2.5.6 3.5L7.5 9.5l-3.2 1.7.6-3.5L2.4 5.2l3.5-.5z" fill="rgba(210,153,34,0.25)" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg> Score environnemental</button>
+            <button class="ctab" data-view="combine"><svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="4" width="3" height="9" rx="1" fill="rgba(63,185,80,0.4)" stroke="currentColor" stroke-width="1"/><rect x="6" y="2" width="3" height="11" rx="1" fill="rgba(88,166,255,0.4)" stroke="currentColor" stroke-width="1"/><rect x="11" y="6" width="3" height="7" rx="1" fill="rgba(255,123,0,0.4)" stroke="currentColor" stroke-width="1"/></svg> Vue combinée</button>
         </div>
 
         <div class="chart-wrapper">
@@ -449,3 +698,5 @@
 <script src="script.js"></script>
 </body>
 </html>
+
+
